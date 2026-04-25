@@ -14,7 +14,7 @@ data "aws_ami" "app_ami" {
   owners = ["137112412989"] # Amazon
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "blog" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
   subnet_id = module.blog_vpc.public_subnets[0]
