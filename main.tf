@@ -14,7 +14,7 @@ data "aws_ami" "app_ami" {
   owners = ["137112412989"] # Amazon
 }
 
-resource "aws_instance" "blog" {
+resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
   subnet_id = module.blog_vpc.public_subnets[0]
@@ -89,7 +89,7 @@ resource "aws_lb_target_group" "blog" {
 
 resource "aws_lb_target_group_attachment" "blog" {
   target_group_arn = aws_lb_target_group.blog.arn
-  target_id        = aws_instance.blog.id
+  target_id        = aws_instance.web.id
   port             = 80
 }
 
